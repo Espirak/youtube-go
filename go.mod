@@ -1,1 +1,1 @@
-module github.com/Espirak/youtube-go
+module github.com/espirak/youtube-go
