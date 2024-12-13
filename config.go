@@ -19,11 +19,16 @@ const (
 	USER_AGENT_GOOGLE_ASSISTANT = "Mozilla/5.0 (Linux; Android 11; Pixel 2; DuplexWeb-Google/1.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Mobile Safari/537.36"
 )
 
+var gl = "US"
+
 var config = Config{
 	Host:    "youtubei.googleapis.com",
 	BaseURL: "https://youtubei.googleapis.com/youtubei/v1/",
 	Clients: []ClientContext{
-		{ClientID: 1, ClientName: "WEB", ClientVersion: "2.20230728.00.00", UserAgent: USER_AGENT_WEB, Referer: REFERER_YOUTUBE, APIKey: "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"},
+		{ClientID: 1, ClientName: "WEB", ClientVersion: "2.20230728.00.00", UserAgent: USER_AGENT_WEB, Referer: REFERER_YOUTUBE, APIKey: "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8", Locale: &Locale{
+			HL: "zh-CN",
+			GL: &gl,
+		}},
 		{ClientID: 2, ClientName: "MWEB", ClientVersion: "2.20211214.00.00", UserAgent: USER_AGENT_ANDROID, Referer: REFERER_YOUTUBE_MOBILE, APIKey: "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"},
 		{ClientID: 3, ClientName: "ANDROID", ClientVersion: "17.13.3", UserAgent: USER_AGENT_ANDROID, APIKey: "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w"},
 		{ClientID: 5, ClientName: "IOS", ClientVersion: "17.14.2", UserAgent: USER_AGENT_IOS, APIKey: "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc"},

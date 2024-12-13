@@ -4,21 +4,20 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type Locale struct {
-	HL   string
-	GL   *string
-	Lang string
+	HL string
+	GL *string
 }
 
 func (l *Locale) AcceptLanguage() string {
-	//langs := []string{l.HL}
-	//if l.GL != nil {
-	//	langs = append(langs, *l.GL)
-	//}
-	//return strings.Join(langs, ",")
-	return l.Lang
+	langs := []string{l.HL}
+	if l.GL != nil {
+		langs = append(langs, *l.GL)
+	}
+	return strings.Join(langs, ",")
 }
 
 type Error struct {
@@ -58,6 +57,8 @@ func (c *ClientContext) Params() map[string]string {
 
 func (c *ClientContext) Context() map[string]string {
 	return map[string]string{
+		"hl":            c.Locale.HL,
+		"gl":            *c.Locale.GL,
 		"clientName":    c.ClientName,
 		"clientVersion": c.ClientVersion,
 	}
