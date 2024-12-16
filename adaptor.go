@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -105,6 +106,10 @@ func (ita *InnerTubeAdaptor) Dispatch(endpoint string, params map[string]string,
 	var responseData map[string]interface{}
 	if err := json.NewDecoder(reader).Decode(&responseData); err != nil {
 		return nil, err
+	}
+
+	if responseData["responseContext"] == nil {
+		return nil, errors.New("no result")
 	}
 
 	visitorData, ok := responseData["responseContext"].(map[string]interface{})["visitorData"].(string)
